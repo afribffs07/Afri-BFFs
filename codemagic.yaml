@@ -1,0 +1,21 @@
+workflows:
+  ios-workflow:
+    name: iOS Build (Expo / React Native)
+    environment:
+      node: latest
+      npm: latest
+      groups:
+        - ios_credentials  # We'll create this in Codemagic dashboard
+    scripts:
+      - name: Install dependencies
+        script: |
+          npm install --legacy-peer-deps
+          npm install -g eas-cli
+      - name: Build IPA with EAS
+        script: |
+          eas build --platform ios --non-interactive --profile production
+    artifacts:
+      - build/**/*
+    publishing:
+      app_store_connect:
+        api_key: $APP_STORE_CONNECT_KEY
