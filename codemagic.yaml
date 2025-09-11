@@ -1,18 +1,21 @@
 workflows:
-  ios-workflow:
-    name: iOS Build (Expo / React Native)
+  ios-and-android:
+    name: Build iOS and Android
     environment:
       node: latest
       npm: latest
       groups:
-        - ios_credentials  # We'll create this in Codemagic dashboard
+        - ios_credentials   # group for environment variables like EXPO_TOKEN
     scripts:
       - name: Install dependencies
         script: |
           npm install --legacy-peer-deps
           npm install -g eas-cli
-      - name: Build IPA with EAS
+      - name: Build iOS IPA
         script: |
-          eas build --platform ios --non-interactive --profile production
+          eas build --platform ios --non-interactive --profile production --token $EXPO_TOKEN
+      - name: Build Android AAB
+        script: |
+          eas build --platform android --non-interactive --profile production --token $EXPO_TOKEN
     artifacts:
       - build/**/*
