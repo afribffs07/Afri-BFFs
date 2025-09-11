@@ -16,6 +16,3 @@ workflows:
           eas build --platform ios --non-interactive --profile production
     artifacts:
       - build/**/*
-    publishing:
-      app_store_connect:
-        api_key: $APP_STORE_CONNECT_KEY
