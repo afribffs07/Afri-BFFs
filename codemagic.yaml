@@ -2,20 +2,21 @@ workflows:
   ios-and-android:
     name: Build iOS and Android
     environment:
-      node: latest
+      node: 18.17.1         # match your project Node version
       npm: latest
       groups:
-        - ios_credentials   # optional group for organizing your environment variables
+        - ios_credentials    # group for EXPO_TOKEN and other secrets
     scripts:
-      - name: Install dependencies
+      - name: Clean & install dependencies
         script: |
+          rm -rf node_modules package-lock.json
           npm install --legacy-peer-deps
-          npm install -g eas-cli
+          npm install eas-cli --save-dev
       - name: Build iOS IPA
         script: |
-          eas build --platform ios --non-interactive --profile production
+          npx eas build --platform ios --non-interactive --profile production
       - name: Build Android AAB
         script: |
-          eas build --platform android --non-interactive --profile production
+          npx eas build --platform android --non-interactive --profile production
     artifacts:
       - build/**/*
