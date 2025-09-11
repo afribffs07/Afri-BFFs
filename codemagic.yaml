@@ -5,7 +5,7 @@ workflows:
       node: latest
       npm: latest
       groups:
-        - ios_credentials   # group for environment variables like EXPO_TOKEN
+        - ios_credentials   # optional group for organizing your environment variables
     scripts:
       - name: Install dependencies
         script: |
@@ -13,9 +13,9 @@ workflows:
           npm install -g eas-cli
       - name: Build iOS IPA
         script: |
-          eas build --platform ios --non-interactive --profile production --token $EXPO_TOKEN
+          eas build --platform ios --non-interactive --profile production
       - name: Build Android AAB
         script: |
-          eas build --platform android --non-interactive --profile production --token $EXPO_TOKEN
+          eas build --platform android --non-interactive --profile production
     artifacts:
       - build/**/*
