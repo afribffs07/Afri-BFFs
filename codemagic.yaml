@@ -2,10 +2,9 @@ workflows:
   ios-and-android:
     name: Build iOS and Android
     environment:
-      node: 18.17.1         # match your project Node version
-      npm: latest
+      node: 18.17.1
       groups:
-        - ios_credentials    # group for EXPO_TOKEN and other secrets
+        - ios_credentials
     scripts:
       - name: Clean & install dependencies
         script: |
@@ -20,3 +19,4 @@ workflows:
           npx eas build --platform android --non-interactive --profile production
     artifacts:
       - build/**/*
+
