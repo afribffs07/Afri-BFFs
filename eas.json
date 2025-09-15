@@ -5,20 +5,15 @@
   "build": {
     "development": {
       "distribution": "internal",
-      "ios": {
-        "simulator": true
-      }
+      "ios": { "simulator": true }
     },
     "preview": {
       "distribution": "internal",
-      "ios": {
-        "simulator": false
-      }
+      "ios": { "simulator": false }
     },
     "production": {
-      "ios": {
-        "simulator": false
-      }
+      "ios": { "simulator": false }
     }
-  }
+  },
+  "projectId": "feb9fdf0-8e2c-40a0-9b0e-672d38188399"
 }
