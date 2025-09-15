@@ -12,7 +12,17 @@
       "ios": { "simulator": false }
     },
     "production": {
-      "ios": { "simulator": false }
+      "ios": {
+        "simulator": false,
+        "workflow": "deploy",
+        "credentialsSource": "remote",
+        "appStoreConnectKey": {
+          "keyId": "$ASC_API_KEY_ID",
+          "issuerId": "$ASC_API_ISSUER_ID",
+          "key": "$ASC_API_KEY_FILE"
+        }
+      }
     }
   }
 }
+
