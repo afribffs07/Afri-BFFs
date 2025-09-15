@@ -1,0 +1,68 @@
+---
+format_version: '23'
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: react-native
+workflows:
+  deploy:
+    description: |
+      Runs a build on Expo Application Services (EAS).
+
+      Next steps:
+      - Make sure your Expo access token and App Store Connect API key values are stored in Bitrise Secrets.
+    steps:
+    - activate-ssh-key@4: {}
+    - git-clone@8: {}
+    - npm@1:
+        title: npm install
+        inputs:
+        - command: install --legacy-peer-deps
+    - script@1:
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            set -e
+            set -o pipefail
+            set -x
+
+            echo "=== Checking eas.json on Bitrise ==="
+            cat eas.json
+    - run-eas-build@0:
+        inputs:
+        - platform: ios
+        - access_token: "$EXPO_TOKEN"
+    - deploy-to-bitrise-io@2: {}
+
+  primary:
+    description: |
+      Installs dependencies.
+
+      Next steps:
+      - Add tests to your project and configure the workflow to run them.
+    steps:
+    - activate-ssh-key@4: {}
+    - git-clone@8: {}
+    - restore-npm-cache@2: {}
+    - npm@1:
+        title: npm install
+        inputs:
+        - command: install --legacy-peer-deps
+    - save-npm-cache@1: {}
+    - deploy-to-bitrise-io@2: {}
+
+    triggers:
+      push:
+      - branch: main
+      pull_request:
+      - source_branch: "*"
+
+meta:
+  bitrise.io:
+    stack: osx-xcode-16.4.x
+    machine_type_id: g2.mac.large
+
+app:
+  envs:
+    # Platform env (optional)
+    - PLATFORM: all
+      opts:
+        is_expand: false
