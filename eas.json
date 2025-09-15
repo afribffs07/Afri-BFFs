@@ -14,6 +14,5 @@
     "production": {
       "ios": { "simulator": false }
     }
-  },
-  "projectId": "feb9fdf0-8e2c-40a0-9b0e-672d38188399"
+  }
 }
