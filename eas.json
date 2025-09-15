@@ -14,15 +14,8 @@
     "production": {
       "ios": {
         "simulator": false,
-        "workflow": "deploy",
-        "credentialsSource": "remote",
-        "appStoreConnectKey": {
-          "keyId": "$ASC_API_KEY_ID",
-          "issuerId": "$ASC_API_ISSUER_ID",
-          "key": "$ASC_API_KEY_FILE"
-        }
+        "credentialsSource": "remote"
       }
     }
   }
 }
-
