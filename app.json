@@ -1,21 +1,19 @@
 {
   "expo": {
-    "name": "Afri-BFFs",
+    "name": "onspace-app",
     "slug": "onspace-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/logo.png",
     "scheme": "onspaceapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "bundleIdentifier": "com.wwolde1.onspaceapp",
-      "icon": "./assets/images/icon.png"
+      "supportsTablet": true
     },
     "android": {
-      "package": "com.wwolde1.onspaceapp",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/icon.png",
+        "foregroundImage": "./assets/images/logo.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true
@@ -40,13 +38,6 @@
     ],
     "experiments": {
       "typedRoutes": true
-    },
-    "extra": {
-      "router": {},
-      "eas": {
-        "projectId": "feb9fdf0-8e2c-40a0-9b0e-672d38188399"
-      }
-    },
-    "owner": "wwolde1"
+    }
   }
 }
